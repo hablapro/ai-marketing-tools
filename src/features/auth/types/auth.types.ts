@@ -4,6 +4,7 @@ export type User = SupabaseUser | null;
 
 export interface AuthContextType {
   user: User;
+  userRole: string | null;
   loading: boolean;
   error: string | null;
   signIn: (email: string, password: string) => Promise<void>;

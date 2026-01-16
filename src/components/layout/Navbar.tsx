@@ -4,8 +4,10 @@ import { Linkedin, LogIn, UserPlus, LogOut } from 'lucide-react';
 import { useAuth } from '@/features/auth/hooks';
 
 export function Navbar() {
-  const { user, signOut } = useAuth();
+  const { user, userRole, signOut } = useAuth();
   const navigate = useNavigate();
+
+  const isAdmin = userRole === 'admin';
 
   const handleLogout = async () => {
     try {
@@ -34,12 +36,14 @@ export function Navbar() {
           <div className="flex items-center space-x-4">
             {user && (
               <>
-                <Link
-                  to="/admin"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 px-3 py-2 text-sm"
-                >
-                  Admin Dashboard
-                </Link>
+                {isAdmin && (
+                  <Link
+                    to="/admin"
+                    className="text-gray-600 hover:text-gray-900 transition-colors duration-200 px-3 py-2 text-sm"
+                  >
+                    Admin Dashboard
+                  </Link>
+                )}
                 <button
                   onClick={handleLogout}
                   className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm font-medium border border-gray-300 rounded-lg hover:bg-gray-50"
