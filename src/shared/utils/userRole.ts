@@ -18,8 +18,9 @@ export async function getUserRole(userId: string): Promise<string> {
       return 'user';
     }
 
-    // Return role if exists, otherwise default to 'user'
-    return data?.role || 'user';
+    const role = data?.role || 'user';
+    console.log(`getUserRole(${userId}): ${role}`);
+    return role;
   } catch (err) {
     console.error('Error fetching user role:', err);
     return 'user'; // Default to user role on error

@@ -9,12 +9,20 @@ export function LoginPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) return;
+    if (!user) {
+      console.log('LoginPage: No user, waiting for login');
+      return;
+    }
+
+    console.log('LoginPage: User logged in:', user.email, 'ID:', user.id);
 
     // Check if user is admin and redirect accordingly
     const checkAndRedirect = async () => {
       const isAdmin = await isUserAdmin(user.id);
-      navigate(isAdmin ? '/admin' : '/');
+      console.log('LoginPage: isAdmin check result:', isAdmin);
+      const destination = isAdmin ? '/admin' : '/';
+      console.log('LoginPage: Redirecting to:', destination);
+      navigate(destination);
     };
 
     checkAndRedirect();
