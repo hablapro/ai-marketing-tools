@@ -5,10 +5,14 @@ import { useAuth } from '@/features/auth/hooks';
 import { isUserAdmin } from '@/shared/utils/userRole';
 
 export function LoginPage() {
+  console.log('LoginPage: Component mounted');
   const { user } = useAuth();
   const navigate = useNavigate();
 
+  console.log('LoginPage: Current user state:', user?.email || 'No user');
+
   useEffect(() => {
+    console.log('LoginPage: useEffect running, user:', user?.email || 'No user');
     if (!user) {
       console.log('LoginPage: No user, waiting for login');
       return;
