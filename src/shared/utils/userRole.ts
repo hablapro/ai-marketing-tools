@@ -6,24 +6,18 @@ import { supabase } from '@/lib/supabase';
  */
 export async function getUserRole(userId: string): Promise<string> {
   try {
-    console.log(`getUserRole: Fetching role for user ${userId}`);
     const { data, error } = await supabase
       .from('user_profiles')
       .select('role')
       .eq('id', userId)
       .single();
 
-    console.log(`getUserRole: Query result - data:`, data, 'error:', error);
-
     if (error && error.code !== 'PGRST116') {
       // PGRST116 means "no rows found" - that's OK, we'll default to 'user'
-      console.warn('Could not fetch user role:', error);
       return 'user';
     }
 
-    const role = data?.role || 'user';
-    console.log(`getUserRole(${userId}): ${role}`);
-    return role;
+    return data?.role || 'user';
   } catch (err) {
     console.error('Error fetching user role:', err);
     return 'user'; // Default to user role on error
@@ -36,9 +30,7 @@ export async function getUserRole(userId: string): Promise<string> {
  */
 export async function isUserAdmin(userId: string): Promise<boolean> {
   const role = await getUserRole(userId);
-  const isAdmin = role === 'admin';
-  console.log(`isUserAdmin(${userId}): role="${role}" → isAdmin=${isAdmin}`);
-  return isAdmin;
+  return role === 'admin';
 }
 
 /**
