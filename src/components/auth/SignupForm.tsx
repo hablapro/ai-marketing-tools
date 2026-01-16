@@ -10,6 +10,11 @@ import { UserPlus } from 'lucide-react';
 
 // Validation schema
 const signupSchema = z.object({
+  name: z
+    .string()
+    .min(2, 'Name must be at least 2 characters')
+    .max(100, 'Name must be less than 100 characters')
+    .min(1, 'Name is required'),
   email: z
     .string()
     .email('Invalid email address')
@@ -52,7 +57,7 @@ export function SignupForm() {
       // Get the current user's ID and create their profile
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
-        await createUserProfile(user.id, 'user'); // Create as regular user by default
+        await createUserProfile(user.id, 'user', data.name.trim());
       }
 
       // Show success message
@@ -96,6 +101,24 @@ export function SignupForm() {
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)} disabled={!!successMessage}>
           <div className="rounded-md shadow-sm space-y-4" style={{ opacity: successMessage ? 0.5 : 1, pointerEvents: successMessage ? 'none' : 'auto' }}>
+            <div>
+              <label htmlFor="name" className="sr-only">
+                Full Name
+              </label>
+              <input
+                id="name"
+                type="text"
+                autoComplete="name"
+                placeholder="Full name"
+                {...register('name')}
+                aria-invalid={errors.name ? 'true' : 'false'}
+                className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm aria-invalid:border-red-500"
+              />
+              {errors.name && (
+                <p className="text-red-600 text-sm mt-1">{errors.name.message}</p>
+              )}
+            </div>
+
             <div>
               <label htmlFor="email-address" className="sr-only">
                 Email address

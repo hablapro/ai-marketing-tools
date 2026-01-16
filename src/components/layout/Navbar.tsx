@@ -4,7 +4,7 @@ import { Linkedin, LogIn, UserPlus, LogOut } from 'lucide-react';
 import { useAuth } from '@/features/auth/hooks';
 
 export function Navbar() {
-  const { user, userRole, signOut } = useAuth();
+  const { user, userRole, displayName, signOut } = useAuth();
   const navigate = useNavigate();
 
   const isAdmin = userRole === 'admin';
@@ -36,6 +36,11 @@ export function Navbar() {
           <div className="flex items-center space-x-4">
             {user && (
               <>
+                {displayName && (
+                  <span className="text-sm text-gray-700 font-medium hidden sm:inline">
+                    {displayName}
+                  </span>
+                )}
                 {isAdmin && (
                   <Link
                     to="/admin"

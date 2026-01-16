@@ -25,6 +25,29 @@ export async function getUserRole(userId: string): Promise<string> {
 }
 
 /**
+ * Get the user's display name from user_profiles table
+ */
+export async function getUserDisplayName(userId: string): Promise<string> {
+  try {
+    const { data, error } = await supabase
+      .from('user_profiles')
+      .select('display_name')
+      .eq('id', userId)
+      .single();
+
+    if (error && error.code !== 'PGRST116') {
+      // PGRST116 means "no rows found" - that's OK, we'll default to empty string
+      return '';
+    }
+
+    return data?.display_name || '';
+  } catch (err) {
+    console.error('Error fetching display name:', err);
+    return ''; // Default to empty string on error
+  }
+}
+
+/**
  * Check if user is admin
  * Only returns true if role is explicitly set to 'admin'
  */
@@ -36,7 +59,11 @@ export async function isUserAdmin(userId: string): Promise<boolean> {
 /**
  * Create user profile on signup
  */
-export async function createUserProfile(userId: string, role: string = 'user'): Promise<boolean> {
+export async function createUserProfile(
+  userId: string,
+  role: string = 'user',
+  displayName: string = ''
+): Promise<boolean> {
   try {
     const { error } = await supabase
       .from('user_profiles')
@@ -44,6 +71,7 @@ export async function createUserProfile(userId: string, role: string = 'user'): 
         {
           id: userId,
           role: role,
+          display_name: displayName,
         },
       ]);
 
