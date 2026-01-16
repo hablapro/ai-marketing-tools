@@ -33,7 +33,9 @@ export async function getUserRole(userId: string): Promise<string> {
  */
 export async function isUserAdmin(userId: string): Promise<boolean> {
   const role = await getUserRole(userId);
-  return role === 'admin';
+  const isAdmin = role === 'admin';
+  console.log(`isUserAdmin(${userId}): role="${role}" → isAdmin=${isAdmin}`);
+  return isAdmin;
 }
 
 /**
