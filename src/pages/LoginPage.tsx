@@ -22,7 +22,11 @@ export function LoginPage() {
       console.log('LoginPage: isAdmin check result:', isAdmin);
       const destination = isAdmin ? '/admin' : '/';
       console.log('LoginPage: Redirecting to:', destination);
-      navigate(destination);
+
+      // Add small delay so user can see console logs
+      setTimeout(() => {
+        navigate(destination);
+      }, 500);
     };
 
     checkAndRedirect();
