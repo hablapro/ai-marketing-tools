@@ -42,9 +42,11 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
   if (!isAdmin) {
     console.log('ProtectedRoute: User is not admin, redirecting to home');
+    alert(`ACCESS DENIED\n\nUser: ${user.email}\nRole: user\n\nRedirecting to home page...`);
     return <Navigate to="/" replace />;
   }
 
   console.log('ProtectedRoute: User is admin, granting access');
+  alert(`ACCESS GRANTED\n\nUser: ${user.email}\nRole: admin`);
   return <>{children}</>;
 }
