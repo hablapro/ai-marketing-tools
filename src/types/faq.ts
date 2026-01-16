@@ -1,0 +1,9 @@
+export interface FAQ {
+  id: string;
+  tool_id: string;
+  question: string;
+  answer: string;
+  order: number;
+  created_at?: string;
+  updated_at?: string;
+}
