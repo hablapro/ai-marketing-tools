@@ -28,6 +28,7 @@ export function SignupForm() {
   const navigate = useNavigate();
   const { signUp } = useAuth();
   const [apiError, setApiError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const {
     register,
@@ -40,11 +41,21 @@ export function SignupForm() {
 
   const onSubmit = async (data: SignupFormData) => {
     setApiError(null);
+    setSuccessMessage(null);
 
     try {
       await signUp(data.email.trim(), data.password.trim());
       reset();
-      navigate('/');
+
+      // Show success message
+      setSuccessMessage(
+        'Account created successfully! Please check your email to confirm your account. You can then log in.'
+      );
+
+      // Redirect to home after 3 seconds
+      setTimeout(() => {
+        navigate('/');
+      }, 3000);
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Failed to sign up';
       setApiError(message);
@@ -69,8 +80,14 @@ export function SignupForm() {
           </div>
         )}
 
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
-          <div className="rounded-md shadow-sm space-y-4">
+        {successMessage && (
+          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
+            {successMessage}
+          </div>
+        )}
+
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)} disabled={!!successMessage}>
+          <div className="rounded-md shadow-sm space-y-4" style={{ opacity: successMessage ? 0.5 : 1, pointerEvents: successMessage ? 'none' : 'auto' }}>
             <div>
               <label htmlFor="email-address" className="sr-only">
                 Email address
@@ -129,13 +146,13 @@ export function SignupForm() {
           <div>
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !!successMessage}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 <UserPlus className="h-5 w-5 text-blue-500 group-hover:text-blue-400" />
               </span>
-              {isSubmitting ? 'Creating account...' : 'Sign up'}
+              {isSubmitting ? 'Creating account...' : successMessage ? 'Account created!' : 'Sign up'}
             </button>
           </div>
 
