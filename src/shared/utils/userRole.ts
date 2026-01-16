@@ -6,11 +6,14 @@ import { supabase } from '@/lib/supabase';
  */
 export async function getUserRole(userId: string): Promise<string> {
   try {
+    console.log(`getUserRole: Fetching role for user ${userId}`);
     const { data, error } = await supabase
       .from('user_profiles')
       .select('role')
       .eq('id', userId)
       .single();
+
+    console.log(`getUserRole: Query result - data:`, data, 'error:', error);
 
     if (error && error.code !== 'PGRST116') {
       // PGRST116 means "no rows found" - that's OK, we'll default to 'user'

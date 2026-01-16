@@ -8,14 +8,19 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [checkingAdmin, setCheckingAdmin] = useState(true);
 
+  console.log('ProtectedRoute: Rendering, user:', user?.email, 'loading:', loading, 'isAdmin:', isAdmin, 'checking:', checkingAdmin);
+
   useEffect(() => {
     if (!user) {
+      console.log('ProtectedRoute: No user, denying access');
       setCheckingAdmin(false);
       return;
     }
 
+    console.log('ProtectedRoute: Checking if user is admin:', user.email);
     const checkRole = async () => {
       const admin = await isUserAdmin(user.id);
+      console.log('ProtectedRoute: Admin check complete for', user.email, '- isAdmin:', admin);
       setIsAdmin(admin);
       setCheckingAdmin(false);
     };
@@ -36,8 +41,10 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   }
 
   if (!isAdmin) {
+    console.log('ProtectedRoute: User is not admin, redirecting to home');
     return <Navigate to="/" replace />;
   }
 
+  console.log('ProtectedRoute: User is admin, granting access');
   return <>{children}</>;
 }
