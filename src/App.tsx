@@ -12,6 +12,7 @@ const ToolsPage = lazy(() => import('./pages/ToolsPage'));
 const ToolPage = lazy(() => import('./pages/ToolPage'));
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
+const SignupPage = lazy(() => import('./pages/SignupPage'));
 
 /**
  * Loading fallback component shown while lazy-loaded routes are being fetched
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/" element={<ToolsPage />} />
                 <Route path="/tools/:toolId" element={<ToolPage />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignupPage />} />
                 <Route
                   path="/admin/*"
                   element={
