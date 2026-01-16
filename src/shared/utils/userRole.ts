@@ -2,8 +2,9 @@ import { supabase } from '@/lib/supabase';
 
 /**
  * Get the user's role from user_profiles table
+ * Defaults to 'user' role if no profile exists
  */
-export async function getUserRole(userId: string): Promise<string | null> {
+export async function getUserRole(userId: string): Promise<string> {
   try {
     const { data, error } = await supabase
       .from('user_profiles')
@@ -11,22 +12,56 @@ export async function getUserRole(userId: string): Promise<string | null> {
       .eq('id', userId)
       .single();
 
-    if (error) {
+    if (error && error.code !== 'PGRST116') {
+      // PGRST116 means "no rows found" - that's OK, we'll default to 'user'
       console.warn('Could not fetch user role:', error);
-      return null;
+      return 'user';
     }
 
-    return data?.role || null;
+    // Return role if exists, otherwise default to 'user'
+    return data?.role || 'user';
   } catch (err) {
     console.error('Error fetching user role:', err);
-    return null;
+    return 'user'; // Default to user role on error
   }
 }
 
 /**
  * Check if user is admin
+ * Only returns true if role is explicitly set to 'admin'
  */
 export async function isUserAdmin(userId: string): Promise<boolean> {
   const role = await getUserRole(userId);
   return role === 'admin';
+}
+
+/**
+ * Create user profile on signup
+ */
+export async function createUserProfile(userId: string, role: string = 'user'): Promise<boolean> {
+  try {
+    const { error } = await supabase
+      .from('user_profiles')
+      .insert([
+        {
+          id: userId,
+          role: role,
+        },
+      ]);
+
+    if (error) {
+      // User profile might already exist, which is fine
+      if (error.code === '23505') {
+        // Unique constraint violation - profile already exists
+        return true;
+      }
+      console.warn('Could not create user profile:', error);
+      return false;
+    }
+
+    return true;
+  } catch (err) {
+    console.error('Error creating user profile:', err);
+    return false;
+  }
 }

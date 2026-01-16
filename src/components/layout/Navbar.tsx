@@ -1,10 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Linkedin, LogIn, UserPlus } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Linkedin, LogIn, UserPlus, LogOut } from 'lucide-react';
 import { useAuth } from '@/features/auth/hooks';
 
 export function Navbar() {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      navigate('/');
+    } catch (err) {
+      console.error('Logout failed:', err);
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm">
@@ -23,12 +33,21 @@ export function Navbar() {
 
           <div className="flex items-center space-x-4">
             {user && (
-              <Link
-                to="/admin"
-                className="text-gray-600 hover:text-gray-900 transition-colors duration-200 px-3 py-2"
-              >
-                Admin Dashboard
-              </Link>
+              <>
+                <Link
+                  to="/admin"
+                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 px-3 py-2 text-sm"
+                >
+                  Admin Dashboard
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm font-medium border border-gray-300 rounded-lg hover:bg-gray-50"
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span className="hidden sm:inline">Logout</span>
+                </button>
+              </>
             )}
             {!user && (
               <>

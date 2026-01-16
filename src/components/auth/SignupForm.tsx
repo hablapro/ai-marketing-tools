@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useAuth } from '@/features/auth/hooks/useAuth';
+import { createUserProfile } from '@/shared/utils/userRole';
+import { supabase } from '@/lib/supabase';
 import { UserPlus } from 'lucide-react';
 
 // Validation schema
@@ -46,6 +48,12 @@ export function SignupForm() {
     try {
       await signUp(data.email.trim(), data.password.trim());
       reset();
+
+      // Get the current user's ID and create their profile
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        await createUserProfile(user.id, 'user'); // Create as regular user by default
+      }
 
       // Show success message
       setSuccessMessage(
