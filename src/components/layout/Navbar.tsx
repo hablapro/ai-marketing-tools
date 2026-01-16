@@ -7,6 +7,14 @@ export function Navbar() {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
+  // Log auth state for debugging
+  React.useEffect(() => {
+    console.log('Navbar - Auth state:', {
+      isAuthenticated: !!user,
+      userEmail: user?.email || 'Not logged in',
+    });
+  }, [user]);
+
   const handleLogout = async () => {
     try {
       await signOut();

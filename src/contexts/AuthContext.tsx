@@ -18,6 +18,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       try {
         // Get initial session
         const session = await authApi.getSession();
+        console.log('Auth initialized. Session user:', session?.user?.email || 'No user');
 
         if (isMounted) {
           setUser(session?.user ?? null);
@@ -26,6 +27,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } catch (err) {
         if (isMounted) {
           const message = err instanceof Error ? err.message : 'Failed to load session';
+          console.error('Auth initialization error:', message);
           setError(message);
           setUser(null);
         }
@@ -41,6 +43,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // Listen for auth state changes
     const { data } = authApi.onAuthStateChange((user) => {
+      console.log('Auth state changed. User:', user?.email || 'No user');
       if (isMounted) {
         setUser(user);
         setError(null);
@@ -58,6 +61,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // Auth methods
   const signIn = async (email: string, password: string) => {
+    console.log('SignIn attempt for:', email);
     setError(null);
     setLoading(true);
 
@@ -65,9 +69,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const result = await authApi.signIn(email, password);
 
       if (!result.success) {
+        console.error('SignIn failed:', result.error);
         setError(result.error || 'Sign in failed');
         throw new Error(result.error || 'Sign in failed');
       }
+
+      console.log('SignIn successful for:', email);
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Sign in failed';
       setError(message);
@@ -78,6 +85,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signOut = async () => {
+    console.log('SignOut attempt');
     setError(null);
     setLoading(true);
 
@@ -85,9 +93,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const result = await authApi.signOut();
 
       if (!result.success) {
+        console.error('SignOut failed:', result.error);
         throw new Error(result.error || 'Sign out failed');
       }
 
+      console.log('SignOut successful');
       setUser(null);
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Sign out failed';
