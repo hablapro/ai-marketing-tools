@@ -5,27 +5,27 @@ import { Zap, Brain, Gauge, Shield } from 'lucide-react';
 const features = [
   {
     icon: Zap,
-    title: 'Lightning Fast',
-    description: 'Get results in seconds. Our AI engines process your requests instantly, saving you hours of manual work.',
-    gradient: 'from-cyan-500 to-blue-500',
+    title: 'Built for Performance',
+    description: 'Tools designed by a performance marketer obsessed with results. Every tool solves a real marketing problem.',
+    gradient: 'from-[#6B5BFF] to-[#8B7BFF]',
   },
   {
     icon: Brain,
-    title: 'Intelligent & Creative',
-    description: 'Powered by advanced AI models that understand context and generate truly original, actionable insights.',
-    gradient: 'from-magenta-500 to-purple-500',
+    title: 'AI-Powered Intelligence',
+    description: 'Leveraging advanced AI to generate strategic insights, compelling copy, and data-driven recommendations.',
+    gradient: 'from-[#6B5BFF] to-[#8B7BFF]',
   },
   {
     icon: Gauge,
-    title: 'Easy to Use',
-    description: 'No technical skills required. Simple forms, clear results. Get professional-grade output in minutes.',
-    gradient: 'from-orange-500 to-red-500',
+    title: 'Simple & Effective',
+    description: 'No complexity. Fill in your details, get professional-grade marketing results in seconds.',
+    gradient: 'from-[#6B5BFF] to-[#8B7BFF]',
   },
   {
     icon: Shield,
-    title: 'Free & Secure',
-    description: 'Start completely free with no credit card. Your data is encrypted and secure on enterprise infrastructure.',
-    gradient: 'from-green-500 to-emerald-500',
+    title: 'Completely Free',
+    description: 'No hidden costs, no credit card required. Built to help ambitious brands scale smarter.',
+    gradient: 'from-[#6B5BFF] to-[#8B7BFF]',
   },
 ];
 
@@ -51,7 +51,7 @@ const itemVariants = {
 
 export function FeaturesGrid() {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+    <section className="py-32 px-4 sm:px-6 lg:px-8 relative z-10">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -59,13 +59,13 @@ export function FeaturesGrid() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
           <h2 className="text-4xl sm:text-5xl font-black mb-4">
-            Why Choose <span className="bg-gradient-to-r from-cyan-400 to-magenta-400 bg-clip-text text-transparent">Our Platform</span>
+            Why These <span className="text-[#6B5BFF]">Tools Matter</span>
           </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Combine speed, creativity, and reliability to transform your marketing strategy
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            Designed by a strategist who's managed $300M+ in ad spend
           </p>
         </motion.div>
 
@@ -81,7 +81,7 @@ export function FeaturesGrid() {
             const Icon = feature.icon;
             return (
               <motion.div key={index} variants={itemVariants} className="group">
-                <div className="relative h-full p-8 rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-md hover:border-slate-700 transition-all duration-300 overflow-hidden">
+                <div className="relative h-full p-8 rounded-2xl border border-gray-700 bg-[#1a2847]/40 backdrop-blur-md hover:border-[#6B5BFF]/50 transition-all duration-300 overflow-hidden">
                   {/* Gradient border effect on hover */}
                   <div
                     className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl`}
@@ -101,10 +101,10 @@ export function FeaturesGrid() {
                     </div>
 
                     {/* Content */}
-                    <h3 className="text-xl font-bold mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text" style={{ backgroundImage: `linear-gradient(135deg, var(--tw-gradient-stops))` }}>
+                    <h3 className="text-xl font-bold mb-3 text-white">
                       {feature.title}
                     </h3>
-                    <p className="text-slate-400 group-hover:text-slate-300 transition-colors duration-300 leading-relaxed">
+                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300 leading-relaxed">
                       {feature.description}
                     </p>
                   </div>

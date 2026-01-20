@@ -24,7 +24,7 @@ export function CTASection() {
   };
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+    <section className="py-32 px-4 sm:px-6 lg:px-8 relative z-10">
       <div className="max-w-4xl mx-auto">
         {/* Background gradient elements */}
         <div className="absolute inset-0 pointer-events-none">
@@ -33,7 +33,7 @@ export function CTASection() {
               opacity: [0.5, 0.8, 0.5],
             }}
             transition={{ duration: 4, repeat: Infinity }}
-            className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-magenta-500/10 to-orange-500/10 rounded-3xl blur-2xl"
+            className="absolute inset-0 bg-gradient-to-r from-[#6B5BFF]/15 via-[#6B5BFF]/10 to-[#6B5BFF]/5 rounded-3xl blur-2xl"
           />
         </div>
 
@@ -47,15 +47,15 @@ export function CTASection() {
         >
           {/* Main Heading */}
           <h2 className="text-4xl sm:text-5xl font-black mb-6">
-            <span className="block mb-2">Ready to Transform</span>
-            <span className="bg-gradient-to-r from-cyan-400 via-magenta-400 to-orange-400 bg-clip-text text-transparent">
-              Your Marketing Strategy?
+            <span className="block mb-2">Ready to Elevate</span>
+            <span className="text-[#6B5BFF]">
+              Your Marketing?
             </span>
           </h2>
 
           {/* Subtext */}
-          <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Join thousands of marketers using AI-powered tools to create compelling campaigns, strategies, and content. Start free today.
+          <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Get instant access to AI tools built by a performance marketer. No credit card, no complexity. Just better results.
           </p>
 
           {/* Benefits List */}
@@ -68,10 +68,10 @@ export function CTASection() {
           >
             {benefits.map((benefit, index) => (
               <div key={index} className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-500 to-magenta-500 flex items-center justify-center">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#6B5BFF] to-[#8B7BFF] flex items-center justify-center">
                   <Check className="w-4 h-4 text-white" />
                 </div>
-                <span className="text-slate-300">{benefit}</span>
+                <span className="text-gray-300">{benefit}</span>
               </div>
             ))}
           </motion.div>
@@ -86,7 +86,7 @@ export function CTASection() {
           >
             <button
               onClick={handleCTA}
-              className="group relative px-10 py-5 bg-gradient-to-r from-cyan-500 to-magenta-500 text-white font-bold text-lg rounded-xl overflow-hidden shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300"
+              className="group relative px-10 py-5 bg-[#6B5BFF] text-white font-bold text-lg rounded-xl overflow-hidden shadow-2xl hover:shadow-[#6B5BFF]/50 transition-all duration-300"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 {user ? 'Go to Tools' : 'Start For Free'}
@@ -96,7 +96,7 @@ export function CTASection() {
 
             <button
               onClick={() => document.getElementById('tools-showcase')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-10 py-5 border-2 border-slate-600 text-white font-bold text-lg rounded-xl hover:border-cyan-500 hover:bg-cyan-500/5 transition-all duration-300"
+              className="px-10 py-5 border-2 border-gray-600 text-white font-bold text-lg rounded-xl hover:border-[#6B5BFF] hover:bg-[#6B5BFF]/10 transition-all duration-300"
             >
               Learn More
             </button>
@@ -108,14 +108,14 @@ export function CTASection() {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
             viewport={{ once: true }}
-            className="mt-12 pt-8 border-t border-slate-800"
+            className="mt-16 pt-8 border-t border-gray-700"
           >
-            <p className="text-sm text-slate-500 mb-4">Trusted by marketers worldwide</p>
-            <div className="flex justify-center gap-8 items-center">
-              {['Fast', 'Secure', 'Free'].map((badge, index) => (
-                <div key={index} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/50 border border-slate-800">
-                  <div className="w-2 h-2 rounded-full bg-cyan-400" />
-                  <span className="text-xs font-medium text-slate-400">{badge}</span>
+            <p className="text-sm text-gray-500 mb-4">Built with intention for ambitious brands</p>
+            <div className="flex justify-center gap-8 items-center flex-wrap">
+              {['Built by a Strategist', 'Always Free', 'Zero Complexity'].map((badge, index) => (
+                <div key={index} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1a2847]/50 border border-gray-700">
+                  <div className="w-2 h-2 rounded-full bg-[#6B5BFF]" />
+                  <span className="text-xs font-medium text-gray-400">{badge}</span>
                 </div>
               ))}
             </div>

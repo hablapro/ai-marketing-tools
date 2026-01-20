@@ -17,7 +17,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 pb-12 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-32 overflow-hidden">
       {/* Floating geometric shapes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -26,7 +26,7 @@ export function HeroSection() {
             x: [0, 20, 0],
           }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-20 left-10 w-40 h-40 border border-cyan-500/20 rounded-3xl"
+          className="absolute top-20 left-10 w-40 h-40 border border-[#6B5BFF]/30 rounded-3xl"
         />
         <motion.div
           animate={{
@@ -34,14 +34,14 @@ export function HeroSection() {
             x: [0, -30, 0],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-32 right-20 w-64 h-64 border border-magenta-500/20 rounded-full"
+          className="absolute bottom-32 right-20 w-64 h-64 border border-[#6B5BFF]/20 rounded-full"
         />
         <motion.div
           animate={{
             rotate: [0, 360],
           }}
           transition={{ duration: 20, repeat: Infinity, linear: true }}
-          className="absolute top-1/2 right-1/4 w-32 h-32 border border-orange-500/10 rounded-3xl"
+          className="absolute top-1/2 right-1/4 w-32 h-32 border border-[#6B5BFF]/15 rounded-3xl"
           style={{ transform: 'translate(50%, -50%)' }}
         />
       </div>
@@ -52,11 +52,11 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/5 backdrop-blur-md"
+          className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#6B5BFF]/40 bg-[#6B5BFF]/10 backdrop-blur-md"
         >
-          <Sparkles className="w-4 h-4 text-cyan-400" />
-          <span className="text-sm font-medium bg-gradient-to-r from-cyan-400 to-magenta-400 bg-clip-text text-transparent">
-            AI-Powered Marketing Tools
+          <Sparkles className="w-4 h-4 text-[#6B5BFF]" />
+          <span className="text-sm font-medium text-[#6B5BFF]">
+            Free AI Tools by Renzo Proano
           </span>
         </motion.div>
 
@@ -67,15 +67,14 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-5xl sm:text-6xl lg:text-7xl font-black mb-6 leading-tight"
           style={{
-            background: 'linear-gradient(135deg, #06b6d4 0%, #ec4899 50%, #f97316 100%)',
+            background: 'linear-gradient(135deg, #6B5BFF 0%, #8B7BFF 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
           }}
         >
-          Transform Your Marketing
-          <br />
-          <span className="text-white">with AI</span>
+          AI Tools for<br />
+          <span className="text-white">Smarter Marketing</span>
         </motion.h1>
 
         {/* Subheadline */}
@@ -83,9 +82,9 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl sm:text-2xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed"
+          className="text-lg sm:text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed"
         >
-          Generate compelling copy, craft winning strategies, and elevate your brand—all powered by cutting-edge AI. Free to start.
+          Free tools built for ambitious brands. Generate compelling copy, strategic insights, and creative content powered by AI. Created by Renzo Proano, a performance marketing strategist obsessed with data, creativity, and growth.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -97,7 +96,7 @@ export function HeroSection() {
         >
           <button
             onClick={handleCTA}
-            className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-magenta-500 text-white font-bold rounded-xl overflow-hidden shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 flex items-center gap-2"
+            className="group relative px-8 py-4 bg-[#6B5BFF] text-white font-bold rounded-xl overflow-hidden shadow-2xl hover:shadow-[#6B5BFF]/50 transition-all duration-300 flex items-center gap-2"
           >
             <span className="relative z-10 flex items-center gap-2">
               Start For Free
@@ -107,7 +106,7 @@ export function HeroSection() {
 
           <button
             onClick={() => document.getElementById('tools-showcase')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-4 border-2 border-slate-600 text-white font-bold rounded-xl hover:border-cyan-500 hover:bg-cyan-500/5 transition-all duration-300"
+            className="px-8 py-4 border-2 border-gray-600 text-white font-bold rounded-xl hover:border-[#6B5BFF] hover:bg-[#6B5BFF]/10 transition-all duration-300"
           >
             Explore Tools
           </button>
@@ -122,14 +121,14 @@ export function HeroSection() {
         >
           {[
             { number: '8', label: 'AI Tools' },
-            { number: '1000+', label: 'Users' },
-            { number: '100%', label: 'Free to Try' },
+            { number: 'Free', label: 'Always' },
+            { number: '0', label: 'Credit Card Required' },
           ].map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-3xl sm:text-4xl font-black bg-gradient-to-r from-cyan-400 to-magenta-400 bg-clip-text text-transparent">
+              <div className="text-3xl sm:text-4xl font-black text-[#6B5BFF]">
                 {stat.number}
               </div>
-              <div className="text-sm sm:text-base text-slate-400 mt-2">{stat.label}</div>
+              <div className="text-sm sm:text-base text-gray-400 mt-2">{stat.label}</div>
             </div>
           ))}
         </motion.div>

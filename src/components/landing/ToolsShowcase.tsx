@@ -49,7 +49,7 @@ export function ToolsShowcase() {
   };
 
   return (
-    <section id="tools-showcase" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="tools-showcase" className="py-32 px-4 sm:px-6 lg:px-8 relative z-10">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -57,12 +57,12 @@ export function ToolsShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
           <h2 className="text-4xl sm:text-5xl font-black mb-4">
-            Our <span className="bg-gradient-to-r from-cyan-400 to-magenta-400 bg-clip-text text-transparent">8 AI Tools</span>
+            All <span className="text-[#6B5BFF]">8 Tools</span>
           </h2>
-          <p className="text-lg text-slate-400">Everything you need to elevate your marketing strategy</p>
+          <p className="text-lg text-gray-400">Everything you need for better marketing results</p>
         </motion.div>
 
         {/* Tools Grid */}
@@ -79,20 +79,18 @@ export function ToolsShowcase() {
               variants={itemVariants}
               whileHover={!tool.soon ? { y: -8 } : {}}
               onClick={() => handleToolClick(tool.url, tool.soon)}
-              className={`group relative p-6 rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900/40 to-slate-800/20 backdrop-blur-md transition-all duration-300 ${
-                !tool.soon ? 'cursor-pointer hover:border-slate-700' : 'opacity-60 cursor-not-allowed'
+              className={`group relative p-6 rounded-2xl border border-gray-700 bg-gradient-to-br from-[#1a2847]/40 to-[#0F1B3C]/20 backdrop-blur-md transition-all duration-300 ${
+                !tool.soon ? 'cursor-pointer hover:border-[#6B5BFF]/50' : 'opacity-60 cursor-not-allowed'
               }`}
             >
               {/* Glow effect on hover */}
-              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl blur-lg pointer-events-none ${!tool.soon ? `bg-gradient-to-br ${tool.color}` : ''}`} style={{ zIndex: -1 }} />
+              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl blur-lg pointer-events-none ${!tool.soon ? 'bg-gradient-to-br from-[#6B5BFF] to-[#8B7BFF]' : ''}`} style={{ zIndex: -1 }} />
 
               {/* Icon */}
               <div className="text-5xl mb-4">{tool.icon}</div>
 
               {/* Title */}
-              <h3 className="text-lg font-bold mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text transition-all duration-300" style={{
-                backgroundImage: !tool.soon ? `linear-gradient(135deg, #06b6d4, #ec4899)` : undefined
-              }}>
+              <h3 className="text-lg font-bold mb-3 text-white transition-all duration-300">
                 {tool.name}
               </h3>
 
@@ -102,8 +100,8 @@ export function ToolsShowcase() {
                   <span className="text-sm font-medium text-amber-400">Coming Soon</span>
                 ) : (
                   <>
-                    <span className="text-sm text-slate-400">Try Now</span>
-                    <ArrowRight className="w-5 h-5 text-cyan-400 group-hover:translate-x-1 transition-transform" />
+                    <span className="text-sm text-gray-400">Try Now</span>
+                    <ArrowRight className="w-5 h-5 text-[#6B5BFF] group-hover:translate-x-1 transition-transform" />
                   </>
                 )}
               </div>
@@ -111,7 +109,7 @@ export function ToolsShowcase() {
               {/* Lock icon for coming soon */}
               {tool.soon && (
                 <div className="absolute top-4 right-4">
-                  <Lock className="w-5 h-5 text-slate-500" />
+                  <Lock className="w-5 h-5 text-gray-600" />
                 </div>
               )}
             </motion.div>
@@ -124,7 +122,7 @@ export function ToolsShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-16 text-center"
+          className="mt-20 text-center"
         >
           <button
             onClick={() => {
@@ -134,7 +132,7 @@ export function ToolsShowcase() {
                 navigate('/signup');
               }
             }}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-magenta-500 text-white font-bold rounded-xl hover:shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#6B5BFF] text-white font-bold rounded-xl hover:shadow-2xl hover:shadow-[#6B5BFF]/50 transition-all duration-300"
           >
             Explore All Tools
             <ArrowRight className="w-5 h-5" />
