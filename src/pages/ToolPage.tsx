@@ -32,12 +32,18 @@ export function ToolPage() {
   // Memoize hero section to prevent unnecessary recalculations
   const heroSection = useMemo(() => {
     if (!tool) return null;
-    return tool.hero_sections?.[0] || {
+    const hero = tool.hero_sections?.[0] || {
       id: '',
       tool_id: tool.id,
       title: tool.name,
       description: tool.description,
       primary_cta: 'Try Now'
+    };
+    // Map snake_case to camelCase for component
+    return {
+      title: hero.title,
+      description: hero.description,
+      primaryCTA: hero.primary_cta
     };
   }, [tool]);
 

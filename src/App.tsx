@@ -8,6 +8,7 @@ import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 
 // Lazy-loaded pages for code splitting
+const LandingPage = lazy(() => import('./pages/LandingPage'));
 const ToolsPage = lazy(() => import('./pages/ToolsPage'));
 const ToolPage = lazy(() => import('./pages/ToolPage'));
 const AdminPage = lazy(() => import('./pages/AdminPage'));
@@ -34,8 +35,23 @@ function App() {
           <main className="flex-grow pt-16">
             <Suspense fallback={<PageLoadingFallback />}>
               <Routes>
-                <Route path="/" element={<ToolsPage />} />
-                <Route path="/tools/:toolId" element={<ToolPage />} />
+                <Route path="/" element={<LandingPage />} />
+                <Route
+                  path="/tools"
+                  element={
+                    <ProtectedRoute>
+                      <ToolsPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/tools/:toolId"
+                  element={
+                    <ProtectedRoute>
+                      <ToolPage />
+                    </ProtectedRoute>
+                  }
+                />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
                 <Route
