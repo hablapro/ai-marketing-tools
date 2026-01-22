@@ -33,7 +33,8 @@ export function Navbar() {
             <img
               src="/img/rp_logo_black.png"
               alt="Renzo Proano"
-              className="h-12 sm:h-14 object-contain"
+              className="object-contain"
+              style={{ height: '67.2px' }}
             />
           </a>
 
