@@ -28,14 +28,13 @@ export function Navbar() {
             href="https://renzoproano.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 hover:opacity-90 transition-opacity"
+            className="flex items-center hover:opacity-90 transition-opacity"
           >
             <img
               src="/img/rp_logo_black.png"
               alt="Renzo Proano"
-              className="h-8 sm:h-10 object-contain"
+              className="h-12 sm:h-14 object-contain"
             />
-            <div className="hidden sm:block text-xs text-gray-600 font-medium">AI Marketing</div>
           </a>
 
           {/* Center Navigation */}
