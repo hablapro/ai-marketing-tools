@@ -12,6 +12,7 @@ export function ResultCard({ submission, onDelete, isDeleting = false }: ResultC
   const [isCopied, setIsCopied] = useState(false);
 
   // Format the result for display
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const formatResult = (result: any): string => {
     if (!result) return 'No result';
     if (typeof result === 'string') return result;

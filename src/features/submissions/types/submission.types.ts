@@ -5,22 +5,28 @@
  * and query responses
  */
 
+ 
 export interface ToolSubmission {
   id: string;
   user_id: string;
   tool_id: string;
   tool_name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   form_data: Record<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   result: any;
   status: 'success' | 'pending' | 'failed';
   created_at: string;
   updated_at: string;
 }
 
+ 
 export interface CreateSubmissionInput {
   tool_id: string;
   tool_name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   form_data: Record<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   result: any;
 }
 
