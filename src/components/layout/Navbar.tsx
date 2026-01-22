@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Linkedin, ChevronDown, ArrowUpRight } from 'lucide-react';
+import { Linkedin, ArrowUpRight } from 'lucide-react';
 import { useAuth } from '@/features/auth/hooks';
 
 export function Navbar() {
   const { user, userRole, displayName, signOut } = useAuth();
   const navigate = useNavigate();
-  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
 
   const isAdmin = userRole === 'admin';
 
@@ -40,35 +39,12 @@ export function Navbar() {
 
           {/* Center Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <div className="relative">
-              <button
-                onClick={() => setIsResourcesOpen(!isResourcesOpen)}
-                className="flex items-center gap-1 text-gray-700 hover:text-gray-900 transition-colors text-sm font-medium"
-              >
-                AI Resources
-                <ChevronDown className={`h-4 w-4 transition-transform ${isResourcesOpen ? 'rotate-180' : ''}`} />
-              </button>
-
-              {isResourcesOpen && (
-                <div className="absolute top-full mt-2 left-0 bg-white border border-gray-200 rounded-lg shadow-lg py-2 min-w-[200px]">
-                  <Link
-                    to="/tools"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors text-sm"
-                    onClick={() => setIsResourcesOpen(false)}
-                  >
-                    AI Tools
-                  </Link>
-                  <a
-                    href="https://renzoproano.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors text-sm"
-                  >
-                    Blog
-                  </a>
-                </div>
-              )}
-            </div>
+            <Link
+              to="/tools"
+              className="text-gray-700 hover:text-gray-900 transition-colors text-sm font-medium"
+            >
+              AI Tools
+            </Link>
           </div>
 
           {/* Right Navigation */}
