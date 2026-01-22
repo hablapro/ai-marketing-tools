@@ -66,7 +66,9 @@ export function ToolPage() {
         options: field.options
       })) || [],
       webhookUrl: tool.webhook_url,
-      resultTitle: `Your AI-Generated ${tool.name} is Ready 🎯`
+      resultTitle: `Your AI-Generated ${tool.name} is Ready 🎯`,
+      toolId: tool.id,
+      toolName: tool.name
     };
   }, [tool]);
 

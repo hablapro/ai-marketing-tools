@@ -5,6 +5,8 @@ import { Send, Loader2 } from 'lucide-react';
 import { FormConfigType, FormData, FormResponse } from '../../types/form.types';
 import { generateZodSchema } from '../../utils/validation';
 import { useWebhookSubmit } from '../../hooks/useWebhookSubmit';
+import { useAuth } from '@/features/auth/hooks/useAuth';
+import { useCreateSubmission } from '@/features/submissions/hooks';
 import { FormResponseDisplay } from './FormResponse';
 import { FormField } from './FormField';
 
@@ -55,12 +57,10 @@ export function DynamicForm({
   const [lastSubmittedData, setLastSubmittedData] = useState<FormData | null>(null);
   const [isCopied, setIsCopied] = useState(false);
 
-  // Use webhook submission hook
-  const {
-    mutate: submitWebhook,
-    isPending: isSubmittingWebhook,
-    error: webhookError,
-  } = useWebhookSubmit();
+  // Authentication and submission hooks
+  const { user } = useAuth();
+  const { mutate: submitWebhook, isPending: isSubmittingWebhook, error: webhookError } = useWebhookSubmit();
+  const { mutate: createSubmission } = useCreateSubmission();
 
   // Handle form submission
   const onSubmit = useCallback(
@@ -81,6 +81,17 @@ export function DynamicForm({
           {
             onSuccess: (result) => {
               setResponse(result);
+
+              // Auto-save submission to database
+              if (user && config.toolId && config.toolName) {
+                createSubmission({
+                  tool_id: config.toolId,
+                  tool_name: config.toolName,
+                  form_data: data,
+                  result: result,
+                });
+              }
+
               if (onSuccess) {
                 onSuccess(result);
               }
@@ -101,7 +112,7 @@ export function DynamicForm({
         }
       }
     },
-    [config.webhookUrl, submitWebhook, onSuccess, onError, reset]
+    [config.webhookUrl, config.toolId, config.toolName, submitWebhook, createSubmission, user, onSuccess, onError, reset]
   );
 
   // Handle copy to clipboard

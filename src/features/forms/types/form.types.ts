@@ -36,6 +36,8 @@ export interface FormConfigType {
   fields: FormField[];
   webhookUrl: string;
   resultTitle?: string;
+  toolId?: string;
+  toolName?: string;
   className?: {
     form?: string;
     submitButton?: string;

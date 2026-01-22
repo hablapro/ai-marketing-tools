@@ -11,6 +11,7 @@ import { Footer } from './components/layout/Footer';
 const LandingPage = lazy(() => import('./pages/LandingPage'));
 const ToolsPage = lazy(() => import('./pages/ToolsPage'));
 const ToolPage = lazy(() => import('./pages/ToolPage'));
+const MyResultsPage = lazy(() => import('./pages/MyResultsPage'));
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const SignupPage = lazy(() => import('./pages/SignupPage'));
@@ -49,6 +50,14 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <ToolPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/my-results"
+                  element={
+                    <ProtectedRoute>
+                      <MyResultsPage />
                     </ProtectedRoute>
                   }
                 />

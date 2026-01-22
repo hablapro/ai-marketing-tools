@@ -47,6 +47,16 @@ export function Navbar() {
               AI Tools
             </a>
 
+            {/* My Results Link - only show when logged in */}
+            {user && (
+              <Link
+                to="/my-results"
+                className="hidden sm:inline text-gray-700 hover:text-gray-900 transition-colors text-sm font-medium"
+              >
+                My Results
+              </Link>
+            )}
+
             {/* Admin Dashboard - only show when logged in and admin */}
             {user && isAdmin && (
               <Link
