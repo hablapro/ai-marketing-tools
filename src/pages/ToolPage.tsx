@@ -19,6 +19,11 @@ export function ToolPage() {
   // Fetch tool with React Query - this fixes the N+1 query issue
   const { data: tool, isLoading, error } = useToolBySlug(toolId);
 
+  // Scroll to top when page loads
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [toolId]);
+
   // Update page metadata when tool data is loaded
   useEffect(() => {
     if (tool) {
