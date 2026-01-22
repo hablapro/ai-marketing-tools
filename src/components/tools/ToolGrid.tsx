@@ -30,10 +30,10 @@ export function ToolGrid({ tools, onClick }: ToolGridProps) {
   }, [tools, searchQuery, selectedCategory]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="relative flex-1">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-gray-400" />
           </div>
           <input
@@ -41,14 +41,20 @@ export function ToolGrid({ tools, onClick }: ToolGridProps) {
             placeholder="Search tools..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            className="block w-full pl-12 pr-4 py-3 border border-gray-600 rounded-lg leading-5 bg-[#1a2847]/50 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6B5BFF] focus:border-[#6B5BFF] sm:text-sm backdrop-blur-sm transition-all duration-200"
           />
         </div>
         <div className="flex-shrink-0">
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+            className="block w-full px-4 py-3 text-base border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#6B5BFF] focus:border-[#6B5BFF] sm:text-sm rounded-lg bg-[#1a2847]/50 text-white backdrop-blur-sm appearance-none transition-all duration-200"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%9ca3af' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right 12px center',
+              paddingRight: '36px',
+            }}
           >
             {categories.map(category => (
               <option key={category.value} value={category.value}>

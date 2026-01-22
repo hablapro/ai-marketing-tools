@@ -48,13 +48,20 @@ export function ToolsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-8 sm:px-6 lg:px-8 py-24">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Supercharge Your Marketing with AI-Powered Tools
+    <div className="min-h-screen bg-[#0F1B3C]">
+      {/* Decorative background elements */}
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0F1B3C] via-[#1a2847] to-[#0F1B3C]" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#6B5BFF]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/2 right-1/4 w-96 h-96 bg-[#6B5BFF]/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl sm:text-5xl font-black text-white mb-4">
+            All <span className="text-[#6B5BFF]">AI Tools</span>
           </h1>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
             Boost engagement, streamline workflows, and maximize conversions with cutting-edge AI marketing solutions tailored for small business owners.
           </p>
         </div>
