@@ -102,7 +102,7 @@ export function Navbar() {
 
             {/* GET IN TOUCH Button */}
             <a
-              href="https://renzoproano.com/contact"
+              href="https://renzoproano.com/get-in-touch/"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full hover:bg-gray-900 transition-colors text-sm font-bold"
