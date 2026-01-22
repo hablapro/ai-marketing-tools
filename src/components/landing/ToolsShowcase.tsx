@@ -11,7 +11,7 @@ const tools = [
   { name: 'Hero Genie', icon: '⚡', url: '/tools/hero-genie', color: 'from-yellow-500 to-orange-500' },
   { name: 'SEO Audit', icon: '🔍', url: '/tools/seo-audit', color: 'from-green-500 to-emerald-500' },
   { name: 'Facebook Ad Copy', icon: '📱', url: '/tools/facebook-ad-copy', color: 'from-blue-500 to-cyan-500' },
-  { name: 'Reel Genie', icon: '🎬', url: '/tools/reel-genie', color: 'from-pink-500 to-magenta-500' },
+  { name: 'Reel Genie', icon: '🎬', url: '/tools/reel-optimizer', color: 'from-pink-500 to-magenta-500' },
   { name: 'Email Wizard', icon: '✉️', url: '/tools/email-wizard', color: 'from-indigo-500 to-purple-500', soon: true },
 ];
 
@@ -37,15 +37,14 @@ const itemVariants = {
 
 export function ToolsShowcase() {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+
+  console.log('ToolsShowcase rendered:', { user, loading, userEmail: user?.email });
 
   const handleToolClick = (toolUrl: string, soon?: boolean) => {
+    console.log('Tool clicked:', toolUrl, 'User:', user?.email);
     if (soon) return;
-    if (user) {
-      navigate(toolUrl);
-    } else {
-      navigate('/signup');
-    }
+    navigate(toolUrl);
   };
 
   return (
@@ -79,8 +78,9 @@ export function ToolsShowcase() {
               variants={itemVariants}
               whileHover={!tool.soon ? { y: -8 } : {}}
               onClick={() => handleToolClick(tool.url, tool.soon)}
+              style={{ cursor: tool.soon ? 'not-allowed' : 'pointer' }}
               className={`group relative p-6 rounded-2xl border border-gray-700 bg-gradient-to-br from-[#1a2847]/40 to-[#0F1B3C]/20 backdrop-blur-md transition-all duration-300 ${
-                !tool.soon ? 'cursor-pointer hover:border-[#6B5BFF]/50' : 'opacity-60 cursor-not-allowed'
+                !tool.soon ? 'hover:border-[#6B5BFF]/50' : 'opacity-60'
               }`}
             >
               {/* Glow effect on hover */}
