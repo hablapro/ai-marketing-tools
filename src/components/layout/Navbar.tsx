@@ -109,7 +109,7 @@ export function Navbar() {
             {user && (
               <button
                 onClick={handleLogout}
-                className="inline-flex sm:hidden px-3 py-2 text-xs font-medium text-gray-600 hover:text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                className="inline-flex px-3 py-2 text-xs sm:text-sm font-medium text-gray-600 hover:text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
               >
                 Logout
               </button>
