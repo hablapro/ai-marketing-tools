@@ -37,18 +37,16 @@ export function Navbar() {
             />
           </a>
 
-          {/* Center Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link
-              to="/tools"
-              className="text-gray-700 hover:text-gray-900 transition-colors text-sm font-medium"
+          {/* Right Navigation */}
+          <div className="flex items-center space-x-3 sm:space-x-6">
+            {/* AI Tools Link */}
+            <a
+              href="https://ai-tools-platform.netlify.app/"
+              className="hidden sm:inline text-gray-700 hover:text-gray-900 transition-colors text-sm font-medium"
             >
               AI Tools
-            </Link>
-          </div>
+            </a>
 
-          {/* Right Navigation */}
-          <div className="flex items-center space-x-3 sm:space-x-4">
             {/* Admin Dashboard - only show when logged in and admin */}
             {user && isAdmin && (
               <Link
