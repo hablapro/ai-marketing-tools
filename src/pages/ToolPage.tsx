@@ -121,7 +121,7 @@ export function ToolPage() {
     <div className="min-h-screen bg-gray-50">
       <button
         onClick={() => navigate('/')}
-        className="fixed top-20 left-4 z-50 inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-black/80 rounded-md hover:bg-black backdrop-blur-sm transition-colors duration-200"
+        className="fixed top-28 left-4 z-50 inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-black/80 rounded-md hover:bg-black backdrop-blur-sm transition-colors duration-200"
       >
         <ArrowLeft className="h-4 w-4 mr-2" />
         Back to Tools

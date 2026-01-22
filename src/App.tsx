@@ -32,7 +32,7 @@ function App() {
       <AuthProvider>
         <div className="flex flex-col min-h-screen bg-gray-50">
           <Navbar />
-          <main className="flex-grow pt-16">
+          <main className="flex-grow pt-24">
             <Suspense fallback={<PageLoadingFallback />}>
               <Routes>
                 <Route path="/" element={<LandingPage />} />
